@@ -15,9 +15,9 @@
 
 Debes agregar el classpath en la configuración de tu terminal y definir alias para ejecutar ANTLR4.
 	1.	Abre tu archivo de configuración (.zshrc o .bashrc):
-
+``` Terminal 
 nano ~/.zshrc
-
+```
 
 	2.	Agrega al final del archivo lo siguiente:
 
@@ -30,17 +30,17 @@ alias grun='java -Xmx500M -cp "$CLASSPATH" org.antlr.v4.gui.TestRig'
 
 
 	3.	Guarda y recarga la configuración:
-
+```terminal
 source ~/.zshrc
 
-
+```
 
 ⸻
 
 🧮 Uso: Ejemplo de Calculadora
 
 Definimos la gramática con prog, stat y expr:
-
+```
 prog: stat+ ;
 
 stat: expr NEWLINE              # printExpr
@@ -54,7 +54,7 @@ expr: expr op=('*'|'/'|'%'|'^') expr # MulDiv
     | ID                            # Id
     | '(' expr ')'                  # Parens
     ;
-
+```
 📌 Esta gramática define un conjunto de statements (stat) que permiten:
 	•	Asignar variables (ID '=' expr).
 	•	Imprimir expresiones.
@@ -72,6 +72,7 @@ Cada expresión puede ser:
 
 El conjunto de reglas léxicas necesarias para la calculadora:
 
+``` antlr
 MUL : '*' ;
 DIV : '/' ;
 MOD : '%' ;
@@ -83,4 +84,4 @@ INT : [0-9]+ ;
 ID  : [a-zA-Z]+ ;
 NEWLINE:'\r'? '\n' ;
 WS  : [ \t]+ -> skip ;
-
+```
